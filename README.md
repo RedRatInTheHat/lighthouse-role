@@ -1,4 +1,4 @@
-Role Name
+lighthouse-role
 =========
 
 В очень упрощённом виде скачивает и устанавливает [LightHouse](https://github.com/VKCOM/lighthouse.git).<br/>
@@ -29,11 +29,6 @@ Role Variables
 | Параметр | Default | Что это |
 |----------|---------|---------|
 | lighthouse_repository | "https://github.com/VKCOM/lighthouse.git" | Репозиторий, из которого будет скачан Lighthouse |
-
-Dependencies
-------------
-
-Предварительно требуется установить Nginx.
 
 Templates and files
 -------------------
