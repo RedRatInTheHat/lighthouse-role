@@ -1,0 +1,39 @@
+---
+- name: Gathering service facts
+  ansible.builtin.service_facts:
+
+- name: Fail if Nginx is not installed
+  fail:
+    msg: "Please install Nginx before running this role."
+  when: "'nginx.service' not in services"
+
+- name: Install dependencies
+  become: true
+  ansible.builtin.yum:
+    name: git
+    state: present
+
+- name: Download Lighthouse
+  become: true
+  ansible.builtin.git:
+    repo: "{{ lighthouse_repository }}"
+    dest: "{{ lighthouse_directory }}"
+    version: "{{ lighthouse_version }}"
+
+- name: "Allow nginx to modify files in {{ lighthouse_directory }}"
+  become: true
+  community.general.sefcontext:
+    target: "'{{ lighthouse_directory }}(/.*)?'"
+    setype: httpd_sys_rw_content_t
+    state: present
+  notify: Apply new SELinux file context to filesystem
+
+- name: Configure Nginx
+  become: true
+  ansible.builtin.template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/nginx.conf
+    owner: root
+    group: root
+    mode: '0755'
+  notify: Restart and enable Nginx service
