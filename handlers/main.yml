@@ -2,10 +2,3 @@
 - name: Apply new SELinux file context to filesystem
   become: true
   ansible.builtin.command: "restorecon -irv {{ lighthouse_directory }}"
-
-- name: Restart and enable Nginx service
-  become: true
-  ansible.builtin.service:
-    name: nginx
-    state: restarted
-    enabled: true

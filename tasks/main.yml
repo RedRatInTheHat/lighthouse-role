@@ -27,13 +27,4 @@
     setype: httpd_sys_rw_content_t
     state: present
   notify: Apply new SELinux file context to filesystem
-
-- name: Configure Nginx
-  become: true
-  ansible.builtin.template:
-    src: nginx.conf.j2
-    dest: /etc/nginx/nginx.conf
-    owner: root
-    group: root
-    mode: '0755'
-  notify: Restart and enable Nginx service
+  

@@ -22,7 +22,7 @@ Role Variables
 | Параметр | Default | Что это |
 |----------|---------|---------|
 | lighthouse_version | "d701335" | Версия LightHouse: commit, tag или branch |
-| lighthouse_directory | "/srv/www/lighthouse" | Директория, в которой будет размещаться Lighthouse. Должна совпадать с директорией, указанной в конфигурации Nginx |
+| lighthouse_directory | "/srv/www/lighthouse" | Директория, в которой будет размещаться Lighthouse. Должна совпадать с директорией, указанной в конфигурации Nginx. |
 
 [vars/main.yml](vars/main.yml)
 
@@ -30,10 +30,6 @@ Role Variables
 |----------|---------|---------|
 | lighthouse_repository | "https://github.com/VKCOM/lighthouse.git" | Репозиторий, из которого будет скачан Lighthouse |
 
-Templates and files
--------------------
-
-Для настройки отображения Lighthouse небходимо внести изменения в шаблон конфигурации Nginx [templates/vector.yaml.j2](templates/vector.yaml.j2).
 
 Example Playbook
 ----------------
